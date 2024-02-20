@@ -1,3 +1,7 @@
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
 const getAgents = (req, res) => {
     res.send([
         'Jett',
@@ -31,7 +35,18 @@ const getAgent = (req, res) => {
 }
 
 const createAgent = (req, res) => {
-
+    let agent = req.body;
+    prisma.agent.create({
+        data : {
+            name : agent.name
+        }
+    })
+    .then((agent)=>{
+        res.json(agent);
+    })
+    .catch((error)=>{
+        res.json(error);
+    })
 }
 
 const updateAgent = (req,res) => {

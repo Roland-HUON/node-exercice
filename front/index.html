@@ -8,7 +8,10 @@
 <body>
     <h1>Listes des Agents</h1>
     <div id="agents">
-
+        <form>
+            <input type="text" name="agent">
+            <button onclick="sendAgent()">New Agent</button>
+        </form>
     </div>
     <script>
         fetch('http://localhost:5000/agents')
@@ -27,6 +30,17 @@
             .then((data)=>{
                 console.log(data);
             })
+        const sendAgent = async () => {
+            let agent = document.querySelector('input[name="agent"]').value;
+            await fetch('http://localhost:5000/agents', {
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({name:agent})
+            })
+            window.location.href = 'index.html'
+        }
     </script>
 </body>
 </html>

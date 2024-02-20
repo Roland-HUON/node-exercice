@@ -1,10 +1,13 @@
 import express from "express";
 import cors from "cors";
 import router from "./router.js";
+import bodyParser from "body-parser";
 
 const app = express();
 app
     .use(cors())
+    .use(bodyParser.json())
+    .use(bodyParser.urlencoded({extended: true}))
     .use(router)
     
 const port = 5000;
