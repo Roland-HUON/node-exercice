@@ -7,5 +7,4 @@ const router = express.Router()
 router
     .use('/agents', AgentRoutes)
     .use('/hello', HelloRoutes)
-
 export default router

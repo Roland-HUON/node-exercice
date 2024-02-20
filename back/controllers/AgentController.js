@@ -26,4 +26,20 @@ const getAgents = (req, res) => {
     ])
 }
 
-export { getAgents }
+const getAgent = (req, res) => {
+
+}
+
+const createAgent = (req, res) => {
+
+}
+
+const updateAgent = (req,res) => {
+
+}
+
+const deleteAgent = (req, res) => {
+
+}
+
+export { getAgents, getAgent, createAgent, updateAgent, deleteAgent }
