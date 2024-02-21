@@ -21,7 +21,7 @@
                 let agents = document.querySelector('#agents')
                 data.forEach(agent => {
                     agents.innerHTML += `
-                    <h2>${agent}</h2>
+                    <a href="agent.html?id=${agent.id}"><h2>${agent.name}</h2></a>
                     `
                 });
             })
