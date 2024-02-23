@@ -13,6 +13,7 @@ datasource db {
 model Agent {
   id        Int      @id @default(autoincrement())
   name      String
+  users     User[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -21,6 +22,8 @@ model User {
   pseudo    String
   email     String   @unique
   password  String
+  agent     Agent?   @relation(fields:[agentId], references: [id])
+  agentId   Int?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
