@@ -6,7 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="user"></div>
+    <div id="user">
+        
+    </div>
+    <select name="agent" id="agent"></select>
+    <button onclick="favoriteAgent()">Favori</button>
     <script>
         let token = localStorage.getItem('token');
         if(!token){
@@ -23,9 +27,33 @@
             user.innerHTML = `
             <h1>${data.pseudo}</h1>
             <h2>${data.email}</h2>
+            <p>${data.agent?.name ?? "Pas d'agent favori"}</p>
             <a href="index.html">Back</a>
             `
         })
+        fetch('http://localhost:5000/agents')
+            .then((response)=>response.json())
+            .then((data)=>{
+                console.log(data);
+                let select = document.querySelector('select')
+                data.forEach((agent)=>{
+                    select.innerHTML +=`<option value="${agent.id}">${agent.name}</option>`
+                })
+            })
+
+        const favoriteAgent = async(req, res) =>{
+            event.preventDefault()
+            let agent = document.querySelector('select').value
+            await fetch('http://localhost:5000/user/favorite', {
+                method: 'PUT',
+                headers : {
+                    'Content-Type': 'application/json',
+                    'x-access-token' : token
+                },
+                body: JSON.stringify({agent})
+            })
+            window.location.href = 'profile.html'
+        }
     </script>
 </body>
 </html>

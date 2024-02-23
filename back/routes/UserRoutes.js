@@ -1,8 +1,10 @@
 import express from "express";
-import { getProfil } from "../controllers/UserController.js";
+import { getProfil, favoriteAgent } from "../controllers/UserController.js";
 
 const router = express.Router();
 
-router.get('/', getProfil)
+router
+    .get('/', getProfil)
+    .put('/favorite', favoriteAgent)
 
 export default router
